@@ -17,6 +17,9 @@ try{
   var s=localStorage.getItem('study-theme');
   var pick=(ids.indexOf(m)>=0?m:(ids.indexOf(s)>=0?s:''));
   document.documentElement.dataset.theme=pick || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  var pals=['cobalt','matcha','stone','butter'];
+  var pv=(location.search.match(/[?&]palette=([a-z]+)/)||[])[1] || localStorage.getItem('study-palette') || 'matcha';
+  if(pals.indexOf(pv)>=0) document.documentElement.dataset.palette=pv;
 }catch(e){}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,6 +87,62 @@ html[data-theme="dark"]{
   --s-comp:#B69BF5;
   --s-other:#868B9C;
   --shadow:none;
+}
+
+/* ── palettes ────────────────────────────────────────────────────────── */
+html[data-theme="light"][data-palette="matcha"]{
+  --bg:#F4F1E6; --surface:#FFFDF7; --tint:#EAEDDD;
+  --ink:#1A1F16; --ink-2:#4C5345; --ink-3:#6B7263; --line:#DEDCC9;
+  --brand:#4B5A2A; --brand-2:#3B4720; --brand-wash:#E6EAD6;
+  --mint:#DFEAD4; --peach:#F2E3CE; --butter:#F5EFC8; --lilac:#E8E4EF;
+  --heat-0:#E7E3D4; --heat-1:#D2DDBA; --heat-2:#AFC48C; --heat-3:#7F9A5C; --heat-4:#4B5A2A;
+  --s-maths:#4B5A2A; --s-english:#A9573F; --s-science:#9A7B12;
+  --s-commerce:#3F6B4F; --s-comp:#6B5A8F; --s-other:#6B7263;
+}
+html[data-theme="dark"][data-palette="matcha"]{
+  --bg:#13150F; --surface:#1B1E16; --tint:#23281C;
+  --ink:#F1EFE3; --ink-2:#C6C4B2; --ink-3:#9C9C89; --line:#2D3125;
+  --brand:#C9D89D; --brand-2:#DAE7B0; --brand-wash:#242A19;
+  --mint:#1C2A20; --peach:#2A2419; --butter:#2B2A19; --lilac:#242237;
+  --heat-0:#242817; --heat-1:#39431F; --heat-2:#5A6C34; --heat-3:#8CA45D; --heat-4:#C9D89D;
+  --s-maths:#C9D89D; --s-english:#E88E75; --s-science:#E3C05A;
+  --s-commerce:#7FBF97; --s-comp:#B9A3E8; --s-other:#9C9C89;
+}
+html[data-theme="light"][data-palette="stone"]{
+  --bg:#EFEAE1; --surface:#FBF7F0; --tint:#E7DFD2;
+  --ink:#211D18; --ink-2:#514A40; --ink-3:#746B5F; --line:#DCD2C2;
+  --brand:#8A4B32; --brand-2:#6E3A26; --brand-wash:#F0E1D5;
+  --mint:#DFE6D9; --peach:#F3DCCB; --butter:#F3EACB; --lilac:#E9E1E7;
+  --heat-0:#E8E0D2; --heat-1:#E0C7B1; --heat-2:#C79C7E; --heat-3:#A96E4E; --heat-4:#8A4B32;
+  --s-maths:#8A4B32; --s-english:#A63B2C; --s-science:#94700F;
+  --s-commerce:#4A6B4F; --s-comp:#6A5478; --s-other:#746B5F;
+}
+html[data-theme="dark"][data-palette="stone"]{
+  --bg:#15120F; --surface:#1D1915; --tint:#26211B;
+  --ink:#F2EDE4; --ink-2:#C9C0B3; --ink-3:#A0968A; --line:#2E2822;
+  --brand:#E6A582; --brand-2:#F0BB9C; --brand-wash:#2A211A;
+  --mint:#1E2A22; --peach:#2E211A; --butter:#2B2718; --lilac:#26202F;
+  --heat-0:#251F19; --heat-1:#3A2C22; --heat-2:#5E4332; --heat-3:#9C6A4C; --heat-4:#E6A582;
+  --s-maths:#E6A582; --s-english:#E8695A; --s-science:#E0C060;
+  --s-commerce:#86BF95; --s-comp:#BBA3D6; --s-other:#A0968A;
+}
+html[data-theme="light"][data-palette="butter"]{
+  --bg:#FBF4D9; --surface:#FFFDF2; --tint:#F4E9C4;
+  --ink:#1E1A10; --ink-2:#554E3A; --ink-3:#7A7157; --line:#E6D9B3;
+  --brand:#2546C7; --brand-2:#1C379E; --brand-wash:#F3E6BE;
+  --mint:#E2EEDA; --peach:#F7DFC9; --butter:#FBE9A8; --lilac:#EAE4F7;
+  --heat-0:#EDE5C9; --heat-1:#CFD7EE; --heat-2:#9FB2E6; --heat-3:#5A79D8; --heat-4:#2546C7;
+  --s-maths:#2546C7; --s-english:#C24A38; --s-science:#9A7B12;
+  --s-commerce:#3F6B4F; --s-comp:#6B5A8F; --s-other:#7A7157;
+}
+html[data-theme="dark"][data-palette="butter"]{
+  --bg:#171407; --surface:#201C0F; --tint:#2A2412;
+  --ink:#F5EFD8; --ink-2:#CFC7AC; --ink-3:#A69D82; --line:#332C18;
+  --brand:#9DB0FF; --brand-2:#B7C6FF; --brand-wash:#24264A;
+  --mint:#1E2A20; --peach:#2E2417; --butter:#2E2814; --lilac:#26223A;
+  --heat-0:#2A2412; --heat-1:#33406B; --heat-2:#4A5CA8; --heat-3:#7F97F0; --heat-4:#B7C6FF;
+  --s-maths:#9DB0FF; --s-english:#F08A74; --s-science:#E3C05A;
+  --s-commerce:#7FBF97; --s-comp:#B9A3E8; --s-other:#A69D82;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -432,6 +491,9 @@ footer a{text-underline-offset:2px}
     </nav>
     <div class="spacer"></div>
     <div class="tools">
+      <button class="iconbtn" id="paletteBtn" title="Colour (C)" aria-label="Colour theme">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="4" cy="8" r="2.4" fill="currentColor"/><circle cx="8" cy="4" r="2.4" fill="currentColor" opacity=".55"/><circle cx="12" cy="8" r="2.4" fill="currentColor" opacity=".3"/></svg>
+      </button>
       <button class="iconbtn" id="themeBtn" title="Theme (T)" aria-label="Toggle theme">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
       </button>
@@ -1384,6 +1446,18 @@ function toggleTimer() {
 }
 setInterval(() => { if (S.running) paintTimer(); }, 15000);
 
+/* ── palette ────────────────────────────────────────────────────────── */
+const PALETTES = ['matcha', 'stone', 'cobalt', 'butter'];
+function applyPalette(p) {
+  if (!PALETTES.includes(p)) p = 'cobalt';
+  document.documentElement.dataset.palette = p;
+  lsSet('study-palette', p);
+  const b = document.getElementById('paletteBtn');
+  if (b) {
+    b.title = 'Colour: ' + p + ' (C)';
+    b.setAttribute('aria-label', 'Colour theme: ' + p);
+  }
+}
 /* ── theme ──────────────────────────────────────────────────────────── */
 function applyTheme(t) {
   document.documentElement.dataset.theme = t;
@@ -1391,6 +1465,12 @@ function applyTheme(t) {
 }
 document.getElementById('themeBtn').addEventListener('click', () => {
   applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+});
+document.getElementById('paletteBtn').addEventListener('click', () => {
+  const cur = document.documentElement.dataset.palette || 'cobalt';
+  const next = PALETTES[(PALETTES.indexOf(cur) + 1) % PALETTES.length];
+  applyPalette(next);
+  toast('Colour: ' + next);
 });
 
 /* ── events ─────────────────────────────────────────────────────────── */
@@ -1422,6 +1502,7 @@ document.addEventListener('keydown', e => {
   if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.key === 'n' || e.key === 'N') { e.preventDefault(); openSheet(); }
   else if (e.key === 't' || e.key === 'T') { e.preventDefault(); document.getElementById('themeBtn').click(); }
+  else if (e.key === 'c' || e.key === 'C') { e.preventDefault(); document.getElementById('paletteBtn').click(); }
   else if (e.key === '/') { e.preventDefault(); setView('log'); setTimeout(() => document.getElementById('q').focus(), 60); }
   else if (e.key === '1') setView('today');
   else if (e.key === '2') setView('log');
@@ -1482,6 +1563,8 @@ document.getElementById('heat').addEventListener('click', e => {
 
 /* ── boot ───────────────────────────────────────────────────────────── */
 (function boot() {
+  const pv = (location.search.match(/[?&]palette=([a-z]+)/) || [])[1];
+  applyPalette(pv || lsGet('study-palette') || 'matcha');
   const hv = location.hash.slice(1);
   if (['today', 'log', 'patterns'].includes(hv)) S.view = hv;
   const cached = loadCache();
