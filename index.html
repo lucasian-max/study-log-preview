@@ -538,9 +538,11 @@ footer a{text-underline-offset:2px}
   </section>
 
   <footer>
-    <span id="sourceLine">Notion → /api/sessions</span>
+    <span id="sourceLine">Google Sheet</span>
     <span class="refresh">
-      <a href="https://app.notion.com/p/f5ea712caa9344589cfa59ee33341748" target="_blank" rel="noopener noreferrer">Open in Notion</a>
+      <a href="https://docs.google.com/spreadsheets/d/1KuXnrxfxLLbfBUM3hTimn2yNEiV6jlxfsWx6h1lssbE/edit" target="_blank" rel="noopener noreferrer">Open the sheet</a>
+      <span aria-hidden="true">·</span>
+      <button id="connectBtn" type="button">Connect logging</button>
       <span aria-hidden="true">·</span>
       <button id="refreshBtn" type="button">Refresh</button>
     </span>
@@ -624,11 +626,14 @@ footer a{text-underline-offset:2px}
 <script>
 'use strict';
 /* ── config ─────────────────────────────────────────────────────────── */
-// The canonical host serves the API on the same origin. Any other host
-// (preview, local dev) talks to production directly; the API sends CORS *.
-const API_BASE = location.hostname === 'study.iammridul.me' ? '' : 'https://study.iammridul.me';
-const API = API_BASE + '/api/sessions';
-const LOG_API = API_BASE + '/api/log';
+const SHEET_ID = '1KuXnrxfxLLbfBUM3hTimn2yNEiV6jlxfsWx6h1lssbE';
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit';
+const TABS_KEY = 'study.tabs.v1';
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+// Paste the Apps Script /exec URL here once it is deployed, or connect it in
+// the footer. It enables writes; reads work without it through gviz.
+const SCRIPT_URL_DEFAULT = '';
+const scriptUrl = () => lsGet('study.script') || SCRIPT_URL_DEFAULT;
 const CACHE_KEY = 'study.cache.v3';
 const TIMER_KEY = 'study.timer.v1';
 const SUBJECTS = ['Maths','English','Science','Commerce','Computer Technology','Other'];
@@ -850,18 +855,130 @@ function setSource(text, stale) {
   S.stale = !!stale;
 }
 
+/* ── Google Sheet read path ────────────────────────────────────────── */
+function parseCsv(text) {
+  const rows = []; let row = [], field = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else q = false; }
+      else field += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+    else if (c !== '\r') field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+function parseTab(csv, monthNum) {
+  const rows = parseCsv(csv);
+  if (!rows.length) return [];
+  const head = rows[0].map(h => h.trim().toLowerCase());
+  const at = name => head.indexOf(name);
+  const iDate = at('date'), iCat = at('category'), iAct = at('activity'),
+        iTime = at('time'), iFocus = at('productivity score'), iNotes = at('notes');
+  if (iDate < 0 || iTime < 0) return [];
+  const out = [];
+  for (const r of rows.slice(1)) {
+    const raw = (r[iDate] || '').trim();
+    if (!raw || raw.indexOf('/') < 0) continue;
+    const p = raw.split('/').map(x => parseInt(x, 10));
+    if (p.length !== 3 || p.some(isNaN)) continue;
+    let [a, b, y] = p; if (y < 100) y += 2000;
+    let m, day;
+    if (a === monthNum && b >= 1 && b <= 31) { m = a; day = b; }
+    else if (b === monthNum && a >= 1 && a <= 31) { m = b; day = a; }
+    else if (a > 12) { day = a; m = b; }
+    else { m = a; day = b; }
+    if (m < 1 || m > 12 || day < 1 || day > 31) continue;
+    const h = parseFloat(r[iTime]), f = parseFloat(r[iFocus]);
+    if (!isFinite(h) || !isFinite(f)) continue;
+    out.push({
+      d: y + '-' + String(m).padStart(2,'0') + '-' + String(day).padStart(2,'0'),
+      cat: (r[iCat] || '').trim() || 'Other',
+      act: (r[iAct] || '').trim(),
+      h, f,
+      n: (r[iNotes] || '').trim()
+    });
+  }
+  return out;
+}
+
+async function fetchTab(name) {
+  const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
+    '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(name);
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(name + ' (' + res.status + ')');
+  const text = await res.text();
+  if (!text || text.indexOf('Date') < 0) throw new Error(name + ' is empty');
+  return text;
+}
+
+/* A tab that does not exist returns the first sheet, so a name is only
+   accepted when every date in it belongs to that month. */
+async function loadSheetRows() {
+  let cached = null;
+  try { cached = JSON.parse(lsGet(TABS_KEY) || 'null'); } catch (e) {}
+  const stale = !cached || !Array.isArray(cached.tabs) || Date.now() - cached.t > 864e5;
+  if (stale) {
+    const probed = await Promise.all(MONTHS.map(async (name, i) => {
+      try {
+        const csv = await fetchTab(name);
+        const recs = parseTab(csv, i + 1);
+        const ok = recs.length && recs.every(r => +r.d.slice(5, 7) === i + 1);
+        return ok ? { name, idx: i + 1, csv } : null;
+      } catch (e) { return null; }
+    }));
+    const found = probed.filter(Boolean);
+    if (found.length) {
+      lsSet(TABS_KEY, JSON.stringify({ t: Date.now(), tabs: found.map(f => f.name) }));
+      return cleanRows(found.flatMap(f => parseTab(f.csv, f.idx)));
+    }
+  }
+  const rows = [];
+  await Promise.all((cached && cached.tabs || []).map(async name => {
+    const idx = MONTHS.indexOf(name) + 1;
+    if (idx < 1) return;
+    try { rows.push(...parseTab(await fetchTab(name), idx)); } catch (e) {}
+  }));
+  if (!rows.length) throw new Error('the sheet returned no rows');
+  return cleanRows(rows);
+}
+
+async function postRow(body) {
+  const url = scriptUrl();
+  if (!url) throw new Error('Logging is not connected yet.');
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'content-type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(body)
+  });
+  const text = await res.text();
+  let j = {};
+  try { j = JSON.parse(text); } catch (e) {}
+  if (!res.ok || j.ok === false) throw new Error(j.error || 'Save failed (' + res.status + ')');
+  return j;
+}
+
 async function refresh(force) {
   if (refreshing) return;
   refreshing = true;
   const btn = document.getElementById('refreshBtn');
   if (btn) btn.disabled = true;
   try {
-    const res = await fetch(API, { cache: 'no-store' });
-    if (!res.ok) throw new Error('read failed (' + res.status + ')');
-    const body = await res.json();
-    let rows = cleanRows(Array.isArray(body) ? body : (body.sessions || []));
+    let rows;
+    if (scriptUrl()) {
+      const res = await fetch(scriptUrl() + (scriptUrl().includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) throw new Error('read failed (' + res.status + ')');
+      const body = await res.json();
+      rows = cleanRows(Array.isArray(body) ? body : (body.sessions || []));
+    } else {
+      rows = await loadSheetRows();
+    }
     if (!rows.length) throw new Error('no rows');
-    // keep recently saved rows visible until Notion catches up
+    // keep recently saved rows visible until the sheet catches up
     const keyOf = r => [r.d, r.cat, r.act, r.h, r.f, r.n].join('|');
     const have = new Set(rows.map(keyOf));
     S.pending = S.pending.filter(p => Date.now() - p.t < 10 * 60 * 1000);
@@ -872,7 +989,7 @@ async function refresh(force) {
     S.readAt = Date.now();
     saveCache(rows);
     if (changed || force || !S.D) renderAll();
-    setSource('Notion → /api/sessions', false);
+    setSource('Google Sheet', false);
     stamp();
     announce('Log refreshed.');
   } catch (err) {
@@ -896,7 +1013,7 @@ function stamp() {
     if (!el || S.stale) return;
     const s = Math.round((Date.now() - S.readAt) / 1000);
     const ago = s < 10 ? 'just now' : s < 90 ? s + 's ago' : Math.round(s / 60) + 'm ago';
-    el.textContent = 'Notion → /api/sessions, updated ' + ago;
+    el.textContent = 'Google Sheet, updated ' + ago;
   };
   tick();
   clearInterval(ticker);
@@ -1180,7 +1297,8 @@ function openSheet(preset) {
   document.getElementById('fN').value = '';
   document.getElementById('fF').value = 7;
   document.getElementById('fFout').textContent = '7';
-  document.getElementById('fStatus').textContent = '';
+  document.getElementById('fStatus').textContent = scriptUrl() ? '' : 'Read-only — connect logging first.';
+  paintSave();
   paintCatPick();
   const acts = Array.from(new Set(S.rows.map(r => r.act).filter(Boolean))).sort();
   document.getElementById('actList').innerHTML = acts.map(a => `<option value="${esc(a)}">`).join('');
@@ -1193,8 +1311,14 @@ function paintCatPick() {
     `<button type="button" class="chip" data-cat-pick="${esc(c)}" aria-pressed="${c === sheetCat}">${esc(c)}</button>`).join('');
 }
 
+function paintSave() {
+  const b = document.getElementById('fSave');
+  if (b) b.textContent = scriptUrl() ? 'Save' : 'Connect logging';
+}
+
 async function submitLog(e) {
   e.preventDefault();
+  if (!scriptUrl()) { connectLogging(); return; }
   const form = document.getElementById('logForm');
   if (document.getElementById('fTrap').value) return;
   const body = {
@@ -1210,11 +1334,7 @@ async function submitLog(e) {
   if (!isFinite(body.h) || body.h <= 0) { status.textContent = 'Hours need a number.'; return; }
   status.textContent = 'Saving…'; save.disabled = true;
   try {
-    const res = await fetch(LOG_API, {
-      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body)
-    });
-    const j = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(j.error || 'Save failed (' + res.status + ')');
+    await postRow(body);
     document.getElementById('sheet').close();
     form.reset();
     S.pending.push({ row: body, t: Date.now() });
@@ -1329,6 +1449,25 @@ window.addEventListener('hashchange', () => {
 document.getElementById('fCancel').addEventListener('click', () => document.getElementById('sheet').close());
 document.getElementById('timerBtn').addEventListener('click', toggleTimer);
 document.getElementById('refreshBtn').addEventListener('click', () => refresh(true));
+function paintConnect() {
+  const b = document.getElementById('connectBtn');
+  if (b) b.textContent = scriptUrl() ? 'Logging connected' : 'Connect logging';
+}
+function connectLogging() {
+  const url = prompt('Paste the Apps Script web app URL (it ends in /exec):', scriptUrl() || '');
+  if (url === null) return;
+  const v = url.trim();
+  if (!/^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(v)) {
+    toast('That does not look like an /exec URL.');
+    return;
+  }
+  lsSet('study.script', v);
+  paintConnect();
+  paintSave();
+  toast('Logging connected.');
+  refresh(true);
+}
+document.getElementById('connectBtn').addEventListener('click', connectLogging);
 document.getElementById('logList').addEventListener('keydown', e => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('entry')) {
     e.preventDefault(); e.target.click();
@@ -1352,6 +1491,7 @@ document.getElementById('heat').addEventListener('click', e => {
     renderAll();
     setSource('Showing the last read, refreshing…', true);
   }
+  paintConnect();
   refresh(!cached);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible' && Date.now() - S.readAt > 30000) refresh(false);
