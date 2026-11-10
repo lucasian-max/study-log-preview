@@ -1,0 +1,1362 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Study log — Mridul</title>
+<meta name="description" content="Every session, every subject, every day I sat down. One row at a time.">
+<meta name="theme-color" content="#F8F6F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1116" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Study log — Mridul">
+<meta property="og:description" content="Every session, every subject, every day I sat down.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F8F6F1'/%3E%3Cg fill='%233A46F0'%3E%3Crect x='6' y='6' width='5' height='5' rx='1.4'/%3E%3Crect x='13.5' y='6' width='5' height='5' rx='1.4' opacity='.45'/%3E%3Crect x='21' y='6' width='5' height='5' rx='1.4'/%3E%3Crect x='6' y='13.5' width='5' height='5' rx='1.4' opacity='.45'/%3E%3Crect x='13.5' y='13.5' width='5' height='5' rx='1.4'/%3E%3Crect x='21' y='13.5' width='5' height='5' rx='1.4' opacity='.45'/%3E%3Crect x='6' y='21' width='5' height='5' rx='1.4'/%3E%3Crect x='13.5' y='21' width='5' height='5' rx='1.4' opacity='.45'/%3E%3Crect x='21' y='21' width='5' height='5' rx='1.4'/%3E%3C/g%3E%3C/svg%3E">
+<script>
+try{
+  var ids=['light','dark'];
+  var m=(location.search.match(/[?&]theme=([a-z]+)/)||[])[1];
+  var s=localStorage.getItem('study-theme');
+  var pick=(ids.indexOf(m)>=0?m:(ids.indexOf(s)>=0?s:''));
+  document.documentElement.dataset.theme=pick || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+}catch(e){}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+/* ── tokens ──────────────────────────────────────────────────────────── */
+:root{
+  --bg:#F8F6F1;
+  --surface:#FFFFFF;
+  --tint:#F1F3FB;
+  --ink:#14161C;
+  --ink-2:#4A4E5A;
+  --ink-3:#6B7080;
+  --line:#E7E4DB;
+  --brand:#3A46F0;
+  --brand-2:#2A34C9;
+  --brand-wash:#E9ECFE;
+  --mint:#DFF2E7;
+  --peach:#FBE7DC;
+  --butter:#FBF1D2;
+  --lilac:#EDE7FB;
+  --heat-0:#EDEAE1;
+  --heat-1:#C9CEFB;
+  --heat-2:#929BFA;
+  --heat-3:#5C66F5;
+  --heat-4:#3A46F0;
+  --s-maths:#3A46F0;
+  --s-english:#D9543F;
+  --s-science:#B08500;
+  --s-commerce:#2F7D57;
+  --s-comp:#7A4DD1;
+  --s-other:#7C8091;
+  --r-lg:22px;
+  --r-md:14px;
+  --r-sm:10px;
+  --shadow:0 22px 48px -32px rgba(20,22,28,.35);
+  --display:"Plus Jakarta Sans",-apple-system,system-ui,sans-serif;
+  --maxw:980px;
+}
+html[data-theme="dark"]{
+  --bg:#0F1116;
+  --surface:#171A21;
+  --tint:#1B1F2B;
+  --ink:#F3F1EA;
+  --ink-2:#B9BCC8;
+  --ink-3:#9AA0B0;
+  --line:#262B37;
+  --brand:#8590FF;
+  --brand-2:#A6AEFF;
+  --brand-wash:#1E2438;
+  --mint:#1C2E25;
+  --peach:#2E211B;
+  --butter:#2C2618;
+  --lilac:#241F35;
+  --heat-0:#1E222C;
+  --heat-1:#2A3163;
+  --heat-2:#3E479E;
+  --heat-3:#626CF0;
+  --heat-4:#8590FF;
+  --s-maths:#8590FF;
+  --s-english:#FF7A66;
+  --s-science:#F0C348;
+  --s-commerce:#6FC495;
+  --s-comp:#B69BF5;
+  --s-other:#868B9C;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--display);font-size:16px;line-height:1.55;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+  transition:background .2s ease,color .2s ease;
+}
+h1,h2,h3,p,dl,dd{margin:0}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+.skip{position:absolute;top:-70px;left:16px;z-index:100;padding:11px 16px;background:var(--surface);border-radius:999px;font-size:14px;text-decoration:none}
+.skip:focus{top:14px}
+
+/* ── shell ───────────────────────────────────────────────────────────── */
+.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px)}
+.top .in{
+  max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+  display:flex;align-items:center;gap:22px;
+}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.03em}
+.brand svg{display:block}
+.brand .sub{font-size:12.5px;font-weight:500;color:var(--ink-3);letter-spacing:0}
+.spacer{flex:1}
+.views{display:flex;gap:4px;background:var(--tint);padding:4px;border-radius:999px}
+.views button{
+  padding:8px 15px;font-size:14px;font-weight:500;color:var(--ink-2);border-radius:999px;
+  transition:background .15s ease,color .15s ease
+}
+.views button:hover{color:var(--ink)}
+.views button[aria-current="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(20,22,28,.08)}
+.tools{display:flex;align-items:center;gap:10px}
+.iconbtn{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:999px;
+  background:var(--tint);color:var(--ink-2)
+}
+.iconbtn:hover{color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:0 20px;border-radius:999px;
+  font-size:14.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;
+  transition:transform .12s ease,background .15s ease,box-shadow .15s ease
+}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px -12px rgba(58,70,240,.9)}
+html[data-theme="dark"] .btn.primary{color:#0D0F14}
+.btn.primary:hover{background:var(--brand-2)}
+.btn.ghost{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1px var(--ink-3)}
+.btn.small{min-height:36px;padding:0 15px;font-size:13.5px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:26px 24px 96px}
+.view[hidden]{display:none}
+
+/* ── today ───────────────────────────────────────────────────────────── */
+.hero{
+  position:relative;overflow:hidden;border-radius:var(--r-lg);
+  background:
+    radial-gradient(120% 140% at 100% 0%, var(--brand-wash) 0%, transparent 58%),
+    radial-gradient(90% 120% at 0% 100%, var(--butter) 0%, transparent 55%),
+    var(--surface);
+  box-shadow:inset 0 0 0 1px var(--line);
+  padding:40px 40px 36px;
+  display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;
+}
+.hero .date{font-size:13.5px;font-weight:600;color:var(--brand);margin-bottom:14px}
+.hero h1{
+  font-size:clamp(32px,5vw,56px);line-height:1.02;letter-spacing:-.045em;font-weight:800;
+  max-width:19ch;text-wrap:balance;
+}
+.hero .lede{margin-top:14px;font-size:16px;line-height:1.55;color:var(--ink-2);max-width:46ch}
+.hero .lede b{color:var(--ink);font-weight:700}
+.hero .actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.hero-side{display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.mini{
+  background:color-mix(in srgb,var(--surface) 72%,transparent);
+  backdrop-filter:blur(6px);
+  border-radius:var(--r-md);padding:16px;box-shadow:var(--shadow);
+  width:100%;max-width:280px;
+}
+.mini .cap{font-size:12.5px;color:var(--ink-3);margin-bottom:10px;display:flex;justify-content:space-between;gap:8px}
+.mini .cap b{color:var(--ink);font-weight:700}
+.minigrid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,1fr);grid-auto-columns:1fr;gap:3px}
+.minigrid i{aspect-ratio:1;border-radius:3px;background:var(--heat-0);display:block}
+.minigrid i.l1{background:var(--heat-1)}.minigrid i.l2{background:var(--heat-2)}
+.minigrid i.l3{background:var(--heat-3)}.minigrid i.l4{background:var(--heat-4)}
+.minigrid i.today{outline:2px solid var(--brand);outline-offset:1px}
+.minigrid i.pad{background:transparent}
+.nextup .next-title{font-size:17px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.nextup .next-sub{font-size:12.5px;color:var(--ink-2);margin-top:4px;line-height:1.4}
+.nextup .btn{margin-top:12px;width:100%}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:26px 0 0}
+.stat{background:var(--surface);border-radius:var(--r-md);padding:18px 20px;box-shadow:inset 0 0 0 1px var(--line)}
+.stat:nth-child(2){background:var(--tint);box-shadow:none}
+.stat:nth-child(4){background:var(--peach);box-shadow:none}
+.stat dt{font-size:12.5px;color:var(--ink-2)}
+html[data-theme="dark"] .stat:nth-child(4) dt{color:var(--ink-2)}
+.stat dd{font-size:clamp(26px,3.2vw,36px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:8px}
+.stat dd small{font-size:13px;font-weight:600;letter-spacing:0;color:var(--ink-3);margin-left:7px}
+
+.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}
+.card{background:var(--surface);border-radius:var(--r-md);padding:24px;box-shadow:inset 0 0 0 1px var(--line)}
+.card.tinted{background:var(--brand-wash);box-shadow:none}
+.card h2{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:16px;color:var(--ink)}
+.pickup .big{font-size:24px;font-weight:800;letter-spacing:-.035em;line-height:1.15}
+.pickup .meta{margin-top:6px;font-size:13px;color:var(--ink-2)}
+.pickup .note{
+  margin-top:14px;font-size:14px;color:var(--ink-2);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden
+}
+.pickup .actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.week .days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:4px}
+.daycell{text-align:center}
+.daycell .bar{height:56px;background:var(--tint);border-radius:8px;display:flex;align-items:flex-end;overflow:hidden}
+.daycell .bar i{display:block;width:100%;background:var(--brand);border-radius:6px}
+.daycell.today .bar{box-shadow:inset 0 0 0 2px var(--brand)}
+.daycell b{display:block;margin-top:7px;font-size:11px;font-weight:600;color:var(--ink-3)}
+.daycell em{display:block;font-style:normal;font-size:11px;color:var(--ink-2);height:15px}
+.week .goal{margin-top:16px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.week .goal b{color:var(--ink);font-weight:700}
+
+/* ── patterns ────────────────────────────────────────────────────────── */
+.sec{margin-top:38px}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:14px}
+.sechead h2{font-size:19px;font-weight:800;letter-spacing:-.03em}
+.view > .sechead h2{font-size:30px;letter-spacing:-.04em}
+.sechead p{font-size:13.5px;color:var(--ink-3);max-width:46ch;text-align:right}
+.heatcard{background:var(--surface);border-radius:var(--r-md);padding:22px 22px 16px;box-shadow:inset 0 0 0 1px var(--line)}
+.heat{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,1fr);grid-auto-columns:1fr;gap:4px}
+.heat i{aspect-ratio:1;border-radius:4px;background:var(--heat-0);display:block;transition:transform .12s ease}
+.heat i:hover{transform:scale(1.4);outline:2px solid var(--ink);position:relative;z-index:2}
+.heat i.l1{background:var(--heat-1)}.heat i.l2{background:var(--heat-2)}
+.heat i.l3{background:var(--heat-3)}.heat i.l4{background:var(--heat-4)}
+.heat i.today{outline:2px solid var(--brand);outline-offset:1px}
+.heat i.pad{background:transparent}
+.heatfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;font-size:12px;color:var(--ink-3)}
+.legend{display:flex;align-items:center;gap:4px;font-size:11.5px}
+.legend i{width:11px;height:11px;border-radius:3px;background:var(--heat-0)}
+.legend i.l1{background:var(--heat-1)}.legend i.l2{background:var(--heat-2)}
+.legend i.l3{background:var(--heat-3)}.legend i.l4{background:var(--heat-4)}
+
+table.subj{width:100%;border-collapse:collapse;font-size:14.5px}
+table.subj th{
+  text-align:left;font-size:12px;font-weight:500;color:var(--ink-3);white-space:nowrap;
+  padding:0 0 10px;border-bottom:1px solid var(--line)
+}
+table.subj th.num,table.subj td.num{text-align:right;padding-left:14px}
+table.subj td{padding:14px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+table.subj tr:last-child td{border-bottom:0}
+.subname{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.01em}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--ink-3);flex:none}
+.share{height:6px;background:var(--tint);border-radius:999px;overflow:hidden;min-width:70px}
+.share i{display:block;height:100%;background:var(--brand);border-radius:999px}
+.submeta{display:block;font-size:12px;color:var(--ink-3);margin-top:3px;font-weight:500}
+
+.weeks{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:10px;align-items:end;height:170px;margin-top:6px}
+.wk{display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+.wk .stack{display:flex;flex-direction:column-reverse;justify-content:flex-start;height:100%;gap:0}
+.wk .m{background:var(--brand);border-radius:6px 6px 0 0}
+.wk .o{background:var(--heat-1);border-radius:0 0 6px 6px}
+.wk .lbl{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:10.5px;color:var(--ink-3);white-space:nowrap}
+.weeks::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line)}
+.weeksfoot{display:flex;gap:18px;margin-top:30px;font-size:12.5px;color:var(--ink-3)}
+.weeksfoot span{display:flex;align-items:center;gap:7px}
+.weeksfoot i{width:10px;height:10px;border-radius:3px;display:block}
+
+.phrases{display:flex;flex-wrap:wrap;gap:8px}
+.phr{
+  background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);
+  padding:8px 14px;border-radius:999px;font-size:14px;display:inline-flex;gap:9px;align-items:baseline
+}
+.phr:hover{box-shadow:inset 0 0 0 1px var(--brand);color:var(--brand)}
+.phr b{font-size:12px;font-weight:600;color:var(--ink-3)}
+
+/* ── log ─────────────────────────────────────────────────────────────── */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{position:relative;flex:1 1 100%}
+.search input{
+  width:100%;height:46px;padding:0 16px 0 42px;font:inherit;font-size:14.5px;
+  background:var(--surface);border:1px solid var(--line);border-radius:999px;color:var(--ink)
+}
+.search input::placeholder{color:var(--ink-3)}
+.search svg{position:absolute;left:16px;top:15px;color:var(--ink-3)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{
+  background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);
+  padding:8px 13px;border-radius:999px;font-size:13.5px;display:inline-flex;align-items:center;gap:7px;color:var(--ink-2)
+}
+.chip:hover{box-shadow:inset 0 0 0 1px var(--ink-3);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
+.chip .n{font-size:11.5px;opacity:.6}
+.dayfilter{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:13.5px;color:var(--ink-2)}
+.dayfilter button{color:var(--brand);text-decoration:underline;font-size:13px}
+.logcount{font-size:12.5px;color:var(--ink-3);margin:20px 0 4px}
+.month{display:flex;align-items:baseline;gap:10px;margin:28px 0 4px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.month span{font-size:12px;font-weight:500;color:var(--ink-3);margin-left:auto}
+.entry{
+  display:grid;grid-template-columns:78px 1fr auto;gap:4px 16px;padding:15px 14px;
+  border-radius:var(--r-md);align-items:start;cursor:pointer
+}
+.entry:hover{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.entry .date{font-size:12.5px;color:var(--ink-3);padding-top:3px;font-weight:500}
+.entry .what{min-width:0}
+.entry .top-line{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.entry .cat{font-weight:700;font-size:14.5px;letter-spacing:-.01em}
+.entry .act{font-size:14px;color:var(--ink-2)}
+.entry .tag{font-size:10.5px;padding:2px 7px;background:var(--butter);color:#6b5200;border-radius:999px}
+html[data-theme="dark"] .entry .tag{color:var(--butter);background:#3a3116}
+.entry .note{
+  margin-top:4px;font-size:14px;color:var(--ink-2);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:64ch
+}
+.entry.open .note{-webkit-line-clamp:unset;overflow:visible}
+.entry .right{text-align:right;white-space:nowrap}
+.entry .h{font-weight:700;font-size:14.5px}
+.entry .f{display:block;font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.more{display:flex;justify-content:center;margin-top:28px}
+.empty{padding:70px 0;text-align:center;color:var(--ink-3);font-size:14.5px}
+
+/* ── sheet ───────────────────────────────────────────────────────────── */
+dialog{
+  border:0;border-radius:20px;background:var(--surface);color:var(--ink);
+  padding:0;width:min(540px,calc(100vw - 24px));max-height:calc(100vh - 40px);overflow:auto;
+  box-shadow:0 40px 90px -30px rgba(20,22,28,.55)
+}
+dialog::backdrop{background:rgba(18,20,28,.42);backdrop-filter:blur(3px)}
+.sheet{padding:28px}
+.sheet h2{font-size:24px;font-weight:800;letter-spacing:-.035em}
+.sheet .hint{font-size:13.5px;color:var(--ink-3);margin:4px 0 22px}
+.field{margin-bottom:16px}
+.field > label,.flabel{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);margin-bottom:7px}
+.field input[type=text],.field input[type=date],.field input[type=number],.field textarea{
+  width:100%;padding:12px 13px;font:inherit;font-size:14.5px;background:var(--bg);
+  border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink)
+}
+.field input:focus,.field textarea:focus{outline:2px solid var(--brand);outline-offset:0;border-color:transparent}
+.field textarea{resize:vertical;min-height:80px;line-height:1.45}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.subchips{display:flex;flex-wrap:wrap;gap:7px}
+.subchips .chip{padding:8px 13px}
+.hchips{display:flex;gap:7px;flex-wrap:wrap}
+.focusline{display:flex;align-items:center;gap:14px}
+.focusline input[type=range]{flex:1;accent-color:var(--brand)}
+.focusline output{font-size:14px;font-weight:700;min-width:3ch;text-align:right}
+.sheet .acts{display:flex;align-items:center;gap:10px;margin-top:24px}
+.sheet .status{font-size:13px;color:var(--brand);flex:1}
+.hp{position:absolute;left:-9999px;width:1px;height:1px}
+
+/* ── misc ────────────────────────────────────────────────────────────── */
+footer{
+  margin-top:48px;padding-top:20px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:12.5px;color:var(--ink-3)
+}
+footer a{text-underline-offset:2px}
+.refresh{display:inline-flex;align-items:center;gap:8px}
+.refresh button:hover{color:var(--ink);text-decoration:underline}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);z-index:60;
+  background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:999px;font-size:13.5px;
+  opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;max-width:90vw;text-align:center
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.mobilebar{display:none}
+.boot{padding:130px 0;text-align:center;color:var(--ink-3);font-size:14px}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;padding:30px 26px;gap:24px}
+  .hero-side{align-items:stretch;flex-direction:column;gap:12px}
+  .mini{max-width:none;flex:1}
+  .grid2{grid-template-columns:1fr}
+  .top .in{padding:12px 18px;gap:10px}
+  .top .views,.top .tools .btn{display:none}
+  .brand .sub{display:none}
+  .wrap{padding:20px 18px 100px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat dd{font-size:30px}
+  .mobilebar{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);gap:8px;align-items:center
+  }
+  .mobilebar .views{display:flex;flex:1;background:var(--tint);padding:4px}
+  .mobilebar .views button{padding:8px 10px;font-size:13px;flex:1}
+  .mobilebar .btn{min-height:44px;padding:0 20px}
+  #toast{bottom:92px}
+  .entry{grid-template-columns:62px 1fr auto;padding:14px 8px;gap:4px 10px}
+  .entry .note{-webkit-line-clamp:3}
+  .sechead p{display:none}
+  .sechead h2{font-size:20px}
+  .hero h1{max-width:16ch}
+  .mini .minigrid{grid-auto-columns:1fr}
+}
+@media(max-width:560px){
+  .stat{padding:15px 16px}
+  .week .days{gap:5px}
+  .sheet{padding:20px}
+  .sheet h2{font-size:21px}
+  .sheet .hint{margin-bottom:14px}
+  .sheet .field{margin-bottom:12px}
+  .field textarea{min-height:64px}
+  .subchips .chip,.hchips .chip{padding:6px 11px;font-size:13px}
+  .sheet .acts{position:sticky;bottom:0;background:var(--surface);padding:12px 0 2px;margin-top:14px;border-top:1px solid var(--line)}
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chips .chip{flex:none}
+  table.subj th:nth-child(2),table.subj td:nth-child(2),
+  table.subj th:nth-child(4),table.subj td:nth-child(4){display:none}
+  table.subj td{padding:12px 0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#app">Skip to content</a>
+<noscript><p style="padding:40px 24px;font-family:system-ui;text-align:center">This page needs JavaScript to read the log.</p></noscript>
+
+<header class="top">
+  <div class="in">
+    <div class="brand">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+        <g fill="var(--brand)">
+          <rect x="1" y="1" width="4.4" height="4.4" rx="1.3"/>
+          <rect x="7.8" y="1" width="4.4" height="4.4" rx="1.3" opacity=".4"/>
+          <rect x="14.6" y="1" width="4.4" height="4.4" rx="1.3"/>
+          <rect x="1" y="7.8" width="4.4" height="4.4" rx="1.3" opacity=".4"/>
+          <rect x="7.8" y="7.8" width="4.4" height="4.4" rx="1.3"/>
+          <rect x="14.6" y="7.8" width="4.4" height="4.4" rx="1.3" opacity=".4"/>
+          <rect x="1" y="14.6" width="4.4" height="4.4" rx="1.3"/>
+          <rect x="7.8" y="14.6" width="4.4" height="4.4" rx="1.3" opacity=".4"/>
+          <rect x="14.6" y="14.6" width="4.4" height="4.4" rx="1.3"/>
+        </g>
+      </svg>
+      study log <span class="sub">Mridul</span>
+    </div>
+    <nav class="views" aria-label="Views">
+      <button data-view="today" aria-current="true">Today</button>
+      <button data-view="log" aria-current="false">Log</button>
+      <button data-view="patterns" aria-current="false">Patterns</button>
+    </nav>
+    <div class="spacer"></div>
+    <div class="tools">
+      <button class="iconbtn" id="themeBtn" title="Theme (T)" aria-label="Toggle theme">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+      </button>
+      <button class="btn primary" data-log>Log a session</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="app" tabindex="-1">
+  <div class="boot" id="boot">Reading the log…</div>
+
+  <!-- TODAY -->
+  <section class="view" id="view-today" hidden aria-labelledby="todayTitle">
+    <div class="hero">
+      <div>
+        <p class="date" id="todayDate"></p>
+        <h1 id="todayTitle"></h1>
+        <p class="lede" id="todayLede"></p>
+        <div class="actions">
+          <button class="btn primary" data-log>Log a session</button>
+          <button class="btn ghost" id="timerBtn" hidden>Start a timer</button>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="mini">
+          <div class="cap"><span id="miniCap">Every day so far</span><b id="miniDays"></b></div>
+          <div class="minigrid" id="miniHeat" aria-hidden="true"></div>
+        </div>
+        <div class="mini nextup">
+          <div class="cap"><span>Next up</span><b id="nextWhen"></b></div>
+          <div class="next-title" id="nextTitle"></div>
+          <p class="next-sub" id="nextSub"></p>
+          <button class="btn primary small" id="nextBtn">Log 30 minutes</button>
+        </div>
+      </div>
+    </div>
+
+    <dl class="stats" id="stats"></dl>
+
+    <div class="grid2">
+      <section class="card tinted pickup" aria-labelledby="pickupTitle">
+        <h2 id="pickupTitle">Pick up where you left off</h2>
+        <div id="pickupBody"></div>
+      </section>
+      <section class="card week" aria-labelledby="weekTitle">
+        <h2 id="weekTitle">This week</h2>
+        <div id="weekBody"></div>
+      </section>
+    </div>
+  </section>
+
+  <!-- LOG -->
+  <section class="view" id="view-log" hidden aria-labelledby="logHeading">
+    <div class="sechead">
+      <h2 id="logHeading">The log</h2>
+      <p>Newest first. Tap a row to read the whole note.</p>
+    </div>
+    <div class="toolbar">
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="q" type="search" placeholder="Search notes, subjects, activities" aria-label="Search the log" autocomplete="off">
+      </div>
+      <div class="chips" id="catChips"></div>
+    </div>
+    <div id="dayFilterBox"></div>
+    <p class="logcount" id="logCount"></p>
+    <div id="logList"></div>
+    <div class="more" id="moreBox"></div>
+  </section>
+
+  <!-- PATTERNS -->
+  <section class="view" id="view-patterns" hidden aria-labelledby="patHeading">
+    <div class="sechead">
+      <h2 id="patHeading">Patterns</h2>
+      <p>What the rows add up to. Every square is a day you sat down.</p>
+    </div>
+
+    <div class="heatcard">
+      <div class="heat" id="heat" role="img"></div>
+      <div class="heatfoot">
+        <span id="heatRange"></span>
+        <span class="legend" aria-hidden="true">less <i></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> more</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sechead"><h2>Subjects</h2><p>Hours, sessions, and how recently each one came up.</p></div>
+      <table class="subj" id="subjTable"></table>
+    </div>
+
+    <div class="sec">
+      <div class="sechead"><h2>Last 12 weeks with rows</h2><p>Maths against everything else, ending at the most recent session.</p></div>
+      <div class="weeks" id="weekChart"></div>
+      <div class="weeksfoot">
+        <span><i style="background:var(--brand)"></i>Maths</span>
+        <span><i style="background:var(--heat-1)"></i>Everything else</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sechead"><h2>What keeps coming up</h2><p>Phrases that show up in notes on three or more different days.</p></div>
+      <div class="phrases" id="phrases"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="sourceLine">Notion → /api/sessions</span>
+    <span class="refresh">
+      <a href="https://app.notion.com/p/f5ea712caa9344589cfa59ee33341748" target="_blank" rel="noopener noreferrer">Open in Notion</a>
+      <span aria-hidden="true">·</span>
+      <button id="refreshBtn" type="button">Refresh</button>
+    </span>
+  </footer>
+</main>
+
+<div class="mobilebar">
+  <nav class="views" aria-label="Views">
+    <button data-view="today" aria-current="true">Today</button>
+    <button data-view="log" aria-current="false">Log</button>
+    <button data-view="patterns" aria-current="false">Patterns</button>
+  </nav>
+  <button class="btn primary" data-log>+ Log</button>
+</div>
+
+<dialog id="sheet" aria-labelledby="sheetTitle">
+  <form class="sheet" id="logForm" method="dialog">
+    <h2 id="sheetTitle">Log a session</h2>
+    <p class="hint">Six fields. Half a minute. That is the whole job.</p>
+
+    <div class="row2">
+      <div class="field">
+        <label for="fDate">Date</label>
+        <input type="date" id="fDate" name="d" required>
+      </div>
+      <div class="field">
+        <label for="fH">Hours</label>
+        <input type="number" id="fH" name="h" min="0.05" max="24" step="0.05" inputmode="decimal" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="flabel" id="catLabel">Subject</span>
+      <div class="subchips" id="catPick" role="group" aria-labelledby="catLabel"></div>
+    </div>
+
+    <div class="field">
+      <label for="fAct">Activity</label>
+      <input type="text" id="fAct" name="act" list="actList" autocomplete="off" placeholder="MathAcademy, Dr Du, assessment">
+      <datalist id="actList"></datalist>
+    </div>
+
+    <div class="field">
+      <span class="flabel">Quick hours</span>
+      <div class="hchips" id="hChips">
+        <button type="button" class="chip" data-h="0.25">15 min</button>
+        <button type="button" class="chip" data-h="0.5">30 min</button>
+        <button type="button" class="chip" data-h="0.75">45 min</button>
+        <button type="button" class="chip" data-h="1">1 h</button>
+        <button type="button" class="chip" data-h="1.5">1.5 h</button>
+        <button type="button" class="chip" data-h="2">2 h</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fF">Focus</label>
+      <div class="focusline">
+        <input type="range" id="fF" name="f" min="1" max="10" step="0.5" value="7">
+        <output id="fFout" for="fF">7</output>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fN">Note <span class="muted" style="font-weight:500;color:var(--ink-3)">(optional)</span></label>
+      <textarea id="fN" name="n" maxlength="2000" placeholder="What did you actually do?"></textarea>
+    </div>
+
+    <input class="hp" type="text" name="website" id="fTrap" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <div class="acts">
+      <span class="status" id="fStatus" role="status" aria-live="polite"></span>
+      <button type="button" class="btn ghost small" id="fCancel">Cancel</button>
+      <button type="submit" class="btn primary small" id="fSave">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<div class="sr-only" id="live" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+'use strict';
+/* ── config ─────────────────────────────────────────────────────────── */
+// The canonical host serves the API on the same origin. Any other host
+// (preview, local dev) talks to production directly; the API sends CORS *.
+const API_BASE = location.hostname === 'study.iammridul.me' ? '' : 'https://study.iammridul.me';
+const API = API_BASE + '/api/sessions';
+const LOG_API = API_BASE + '/api/log';
+const CACHE_KEY = 'study.cache.v3';
+const TIMER_KEY = 'study.timer.v1';
+const SUBJECTS = ['Maths','English','Science','Commerce','Computer Technology','Other'];
+const SUB_KEY = {
+  'Maths':'--s-maths','English':'--s-english','Science':'--s-science',
+  'Commerce':'--s-commerce','Computer Technology':'--s-comp','Other':'--s-other'
+};
+const DAY = 86400000;
+const MIN_COUNT_MIN = 45;
+
+/* ── helpers ────────────────────────────────────────────────────────── */
+const esc = x => String(x == null ? '' : x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iso = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+const parse = s => new Date(s + 'T00:00:00');
+const todayISO = () => iso(new Date());
+const dayNum = d => Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / DAY;
+const fromDayNum = n => new Date(n * DAY);
+const diffDays = (a, b) => Math.round(dayNum(parse(b)) - dayNum(parse(a)));
+const fmt = n => { const v = Math.round(n * 10) / 10; return v.toFixed(1).replace(/\.0$/, ''); };
+const mean = a => a.length ? a.reduce((x,y) => x+y, 0) / a.length : 0;
+const sum = a => a.reduce((x,y) => x+y, 0);
+const dshort = s => parse(s).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+const dlong = s => parse(s).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' });
+const monthName = s => parse(s).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' });
+const dot = cat => `background:var(${SUB_KEY[cat] || '--s-other'})`;
+const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+const announce = m => { const el = document.getElementById('live'); if (el) el.textContent = m; };
+let toastT;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => el.classList.remove('on'), 2400);
+}
+
+/* ── state ──────────────────────────────────────────────────────────── */
+const S = {
+  rows: [], D: null, view: 'today', q: '', cat: 'All', day: null,
+  limit: 40, open: new Set(), readAt: 0, stale: false, running: false, pending: []
+};
+
+/* ── data ───────────────────────────────────────────────────────────── */
+function cleanRow(r) {
+  if (!r || !r.d) return null;
+  const d = String(r.d).slice(0, 10);
+  const h = parseFloat(r.h), f = parseFloat(r.f);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || !isFinite(h) || !isFinite(f)) return null;
+  return { d, cat: (r.cat || 'Other').trim() || 'Other', act: (r.act || '').trim(), h, f, n: (r.n || '').trim() };
+}
+function cleanRows(rows) {
+  const seen = new Set(), out = [];
+  for (const raw of rows) {
+    const r = cleanRow(raw);
+    if (!r) continue;
+    const k = [r.d, r.cat, r.act, r.h, r.f, r.n].join('|');
+    if (seen.has(k)) continue;
+    seen.add(k); out.push(r);
+  }
+  return out.sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : a.cat.localeCompare(b.cat));
+}
+
+/* ── derive ─────────────────────────────────────────────────────────── */
+const FUNC = new Set(('a an the and or but if then than that this these those to of in on at for with from by as is are was were be been being it its i me my we our you your he she they them their there here not no so just very really about into over under again also only some any all more most much many few both each other own same too can could would should will shall may might must do does did done doing have has had having im ive id thats').split(' '));
+const GENERIC = new Set(('today yesterday tomorrow mostly mainly around through still again barely almost hundred percent chapter part bits couple few one two three four five six seven eight nine ten which got get gets getting went gone go going lot lots bit little quite actually basically maybe like think thought feel felt seem seemed seems started start starting tried try trying doing work worked working time times day days session lessons thing things stuff part parts piece way ways use using used need needs wanted want wants also another more most forgot').split(' '));
+const VERBS = new Set(('learnt learned finish finished completes completed review reviewed revise revised practise practised practice practiced memorise memorised memorize memorized correct corrected understand understood submit submitted refine refined take took taken make made get got give gave see saw go went doing finish finishes learn learns solving solve solved').split(' '));
+const IRREG = { matrices:'matrix', vertices:'vertex', indices:'index', axes:'axis', analyses:'analysis', bases:'basis' };
+const norm = w => {
+  w = String(w).toLowerCase().replace(/[^a-z'\-]/g, '');
+  if (IRREG[w]) return IRREG[w];
+  if (w.length > 5 && w.endsWith('ies')) return w.slice(0, -3) + 'y';
+  if (w.length > 4 && w.endsWith('es') && /(ss|x|z|ch|sh)es$/.test(w)) return w.slice(0, -2);
+  if (w.length > 4 && w.endsWith('s') && !w.endsWith('ss')) return w.slice(0, -1);
+  return w;
+};
+
+function derive(rows) {
+  const today = todayISO();
+  const byDay = new Map();
+  for (const s of rows) {
+    const e = byDay.get(s.d) || { d: s.d, h: 0, fs: [], cats: new Set(), notes: [], rows: [] };
+    e.h += s.h; e.fs.push(s.f);
+    e.cats.add(s.cat); e.rows.push(s);
+    if (s.n) e.notes.push(s.n);
+    byDay.set(s.d, e);
+  }
+  const days = Array.from(byDay.values()).sort((a, b) => a.d < b.d ? -1 : 1);
+  for (const d of days) {
+    d.focus = mean(d.fs);
+    d.counted = d.h * 60 >= MIN_COUNT_MIN - 1e-9;
+    d.catList = Array.from(d.cats);
+  }
+  const first = days.length ? days[0].d : today;
+  const last = days.length ? days[days.length - 1].d : null;
+  const gap = last ? diffDays(last, today) : null;
+
+  let bestRun = 0, run = 0, prev = null;
+  for (const d of days.filter(x => x.counted)) {
+    run = prev && diffDays(prev, d.d) === 1 ? run + 1 : 1;
+    if (run > bestRun) bestRun = run;
+    prev = d.d;
+  }
+  let current = 0;
+  let anchor = byDay.get(today)?.counted ? today
+    : byDay.get(iso(fromDayNum(dayNum(parse(today)) - 1)))?.counted ? iso(fromDayNum(dayNum(parse(today)) - 1)) : null;
+  while (anchor && byDay.get(anchor)?.counted) {
+    current++;
+    anchor = iso(fromDayNum(dayNum(parse(anchor)) - 1));
+  }
+
+  const t = parse(today);
+  const mondayNum = dayNum(t) - ((t.getDay() + 6) % 7);
+  const week = [];
+  for (let i = 0; i < 7; i++) {
+    const key = iso(fromDayNum(mondayNum + i));
+    const e = byDay.get(key);
+    week.push({ d: key, h: e ? e.h : 0, future: key > today, today: key === today, counted: !!(e && e.counted) });
+  }
+
+  const smap = new Map();
+  for (const s of rows) {
+    const e = smap.get(s.cat) || { cat: s.cat, h: 0, n: 0, fs: [], last: s.d, acts: new Map() };
+    e.h += s.h; e.n++; e.fs.push(s.f);
+    if (s.d > e.last) e.last = s.d;
+    const a = e.acts.get(s.act || '—') || { act: s.act || '—', h: 0, n: 0 };
+    a.h += s.h; a.n++; e.acts.set(a.act, a);
+    smap.set(s.cat, e);
+  }
+  const subjects = Array.from(smap.values())
+    .map(e => ({ ...e, focus: mean(e.fs), acts: Array.from(e.acts.values()).sort((a, b) => b.h - a.h) }))
+    .sort((a, b) => b.h - a.h);
+
+  const wmap = new Map();
+  for (const s of rows) {
+    const dt = parse(s.d);
+    const mon = dayNum(dt) - ((dt.getDay() + 6) % 7);
+    const w = wmap.get(mon) || { maths: 0, other: 0 };
+    if (s.cat === 'Maths') w.maths += s.h; else w.other += s.h;
+    wmap.set(mon, w);
+  }
+  const weeks = [];
+  const anchorDay = parse(last || first);
+  const lastMon = dayNum(anchorDay) - ((anchorDay.getDay() + 6) % 7);
+  for (let i = 11; i >= 0; i--) {
+    const m = lastMon - i * 7;
+    const w = wmap.get(m) || { maths: 0, other: 0 };
+    weeks.push({ mon: iso(fromDayNum(m)), maths: w.maths, other: w.other, h: w.maths + w.other });
+  }
+
+  const seen = new Set(), topics = new Map();
+  for (const s of rows) {
+    if (!s.n) continue;
+    const key = s.d + '|' + s.n.toLowerCase().replace(/\s+/g, ' ').trim();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const toks = s.n.toLowerCase().replace(/[^a-z0-9'\- ]/g, ' ').split(/\s+/).filter(Boolean)
+      .map(norm).filter(w => w.length >= 3 && !FUNC.has(w) && !GENERIC.has(w) && !VERBS.has(w) && !/\d/.test(w));
+    const add = parts => {
+      const p = parts.join(' ');
+      const e = topics.get(p) || { p, days: new Set(), first: s.d, last: s.d };
+      e.days.add(s.d);
+      if (s.d < e.first) e.first = s.d;
+      if (s.d > e.last) e.last = s.d;
+      topics.set(p, e);
+    };
+    for (let i = 0; i + 1 < toks.length; i++) add([toks[i], toks[i+1]]);
+    for (let i = 0; i + 2 < toks.length; i++) add([toks[i], toks[i+1], toks[i+2]]);
+  }
+  const all = Array.from(topics.values());
+  const phrases = all.filter(e => {
+    if (e.days.size < 3) return false;
+    const t = e.p.split(' ');
+    return !all.some(o => {
+      if (o === e || o.days.size < e.days.size) return false;
+      const ot = o.p.split(' ');
+      if (ot.length === t.length) return false;
+      if (ot.length < t.length) {
+        // drop a longer phrase when a shorter, at-least-as-frequent one sits inside it
+        return e.p.includes(' ' + o.p + ' ') || e.p.startsWith(o.p + ' ') || e.p.endsWith(' ' + o.p);
+      }
+      for (let i = 0; i <= ot.length - t.length; i++) {
+        if (ot.slice(i, i + t.length).join(' ') === e.p) return true;
+      }
+      return false;
+    });
+  }).sort((a, b) => b.days.size - a.days.size).slice(0, 10).map(e => ({ p: e.p, n: e.days.size }));
+
+  const hours = sum(rows.map(r => r.h));
+  return {
+    rows, byDay, days, first, last, gap, bestRun, current, week,
+    hoursThisWeek: sum(week.map(d => d.h)),
+    subjects, weeks, phrases,
+    total: {
+      hours, sessions: rows.length, days: days.length,
+      focus: mean(rows.map(r => r.f)),
+      span: diffDays(first, today) + 1,
+      hPerSession: rows.length ? hours / rows.length : 0
+    }
+  };
+}
+
+/* ── cache + fetch ──────────────────────────────────────────────────── */
+let refreshing = false, ticker = null;
+
+function loadCache() {
+  try {
+    const c = JSON.parse(lsGet(CACHE_KEY) || 'null');
+    if (c && Array.isArray(c.rows) && c.rows.length) return c;
+  } catch (e) {}
+  return null;
+}
+function saveCache(rows) { lsSet(CACHE_KEY, JSON.stringify({ t: Date.now(), rows })); }
+
+function setSource(text, stale) {
+  const el = document.getElementById('sourceLine');
+  if (el) el.textContent = text;
+  S.stale = !!stale;
+}
+
+async function refresh(force) {
+  if (refreshing) return;
+  refreshing = true;
+  const btn = document.getElementById('refreshBtn');
+  if (btn) btn.disabled = true;
+  try {
+    const res = await fetch(API, { cache: 'no-store' });
+    if (!res.ok) throw new Error('read failed (' + res.status + ')');
+    const body = await res.json();
+    let rows = cleanRows(Array.isArray(body) ? body : (body.sessions || []));
+    if (!rows.length) throw new Error('no rows');
+    // keep recently saved rows visible until Notion catches up
+    const keyOf = r => [r.d, r.cat, r.act, r.h, r.f, r.n].join('|');
+    const have = new Set(rows.map(keyOf));
+    S.pending = S.pending.filter(p => Date.now() - p.t < 10 * 60 * 1000);
+    for (const p of S.pending) if (!have.has(keyOf(p.row))) rows.push(p.row);
+    rows = cleanRows(rows);
+    const changed = JSON.stringify(rows) !== JSON.stringify(S.rows);
+    S.rows = rows;
+    S.readAt = Date.now();
+    saveCache(rows);
+    if (changed || force || !S.D) renderAll();
+    setSource('Notion → /api/sessions', false);
+    stamp();
+    announce('Log refreshed.');
+  } catch (err) {
+    if (!S.rows.length) {
+      document.getElementById('boot').innerHTML = '<b>Could not read the log.</b><br>' + esc(err.message) +
+        '<br><br><button class="btn ghost small" id="retryBtn">Try again</button>';
+      document.getElementById('retryBtn').onclick = () => refresh(true);
+    } else {
+      setSource('Showing the last good read, from ' + new Date(S.readAt).toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' }), true);
+      toast('Offline. Showing the last good read.');
+    }
+  } finally {
+    refreshing = false;
+    if (btn) btn.disabled = false;
+  }
+}
+
+function stamp() {
+  const tick = () => {
+    const el = document.getElementById('sourceLine');
+    if (!el || S.stale) return;
+    const s = Math.round((Date.now() - S.readAt) / 1000);
+    const ago = s < 10 ? 'just now' : s < 90 ? s + 's ago' : Math.round(s / 60) + 'm ago';
+    el.textContent = 'Notion → /api/sessions, updated ' + ago;
+  };
+  tick();
+  clearInterval(ticker);
+  ticker = setInterval(tick, 20000);
+}
+
+/* ── render: today ──────────────────────────────────────────────────── */
+function shorten(s, n) {
+  s = String(s || '').replace(/\s+/g, ' ').trim();
+  return s.length > n ? s.slice(0, n - 1).replace(/[,;:\s]\S*$/, '') + '…' : s;
+}
+
+function renderToday() {
+  const D = S.D;
+  const t = new Date();
+  document.getElementById('todayDate').textContent =
+    t.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
+
+  const h1 = document.getElementById('todayTitle');
+  const lede = document.getElementById('todayLede');
+  const today = D.byDay.get(todayISO());
+  const lastDay = D.last ? D.byDay.get(D.last) : null;
+
+  if (today) {
+    h1.textContent = 'Logged today.';
+    lede.innerHTML = `<b>${fmt(today.h)} h</b> of ${esc(today.catList.join(' and '))}` +
+      (today.notes.length ? ': ' + esc(shorten(today.notes[0], 96)) : '.');
+  } else if (D.last && D.gap <= 1) {
+    h1.textContent = 'Nothing yet today.';
+    lede.innerHTML = `Yesterday: <b>${esc(lastDay.catList.join(', '))}</b>, ${esc(lastDay.rows[0].act || 'no activity')}, ${fmt(lastDay.h)} h.
+      A short row today keeps the habit warm.`;
+  } else if (D.last) {
+    const r = lastDay.rows.slice().sort((a, b) => b.h - a.h)[0];
+    h1.textContent = `${D.gap} days since the last session.`;
+    lede.innerHTML = `Last time: <b>${dlong(D.last)}</b>, ${esc(r.cat)}${r.act ? ' ' + esc(r.act) : ''}, ${fmt(lastDay.h)} h.
+      Not a restart from zero. Pick the same thing back up for thirty minutes.`;
+  } else {
+    h1.textContent = 'No rows yet.';
+    lede.textContent = 'Log the first session and the rest of this page starts working.';
+  }
+
+  document.getElementById('stats').innerHTML = [
+    ['Days logged', D.total.days, D.total.days === 1 ? 'day' : 'days'],
+    ['Hours', fmt(D.total.hours), 'h'],
+    ['Sessions', D.total.sessions, ''],
+    ['Best run', D.bestRun, D.bestRun === 1 ? 'day' : 'days']
+  ].map(([k, v, u]) => `<div class="stat"><dt>${k}</dt><dd>${v}${u ? `<small>${u}</small>` : ''}</dd></div>`).join('');
+
+  // mini heatmap: the whole log, capped at 26 weeks
+  const mini = document.getElementById('miniHeat');
+  const tNum = dayNum(parse(todayISO()));
+  const thisMon = tNum - ((parse(todayISO()).getDay() + 6) % 7);
+  const firstMon = dayNum(parse(D.first)) - ((parse(D.first).getDay() + 6) % 7);
+  const weeksBack = Math.min(25, Math.floor((thisMon - firstMon) / 7));
+  const start = thisMon - weeksBack * 7;
+  const cells = [];
+  let filled = 0;
+  for (let w = 0; w <= weeksBack; w++) {
+    for (let dow = 0; dow < 7; dow++) {
+      const key = iso(fromDayNum(start + w * 7 + dow));
+      const e = D.byDay.get(key);
+      if (e) filled++;
+      const lv = e ? level(e.h) : 0;
+      cells.push(`<i class="${lv ? 'l' + lv : ''}${key === todayISO() ? ' today' : ''}${key > todayISO() || key < D.first ? ' pad' : ''}" title="${dlong(key)}${e ? ', ' + fmt(e.h) + ' h' : ''}"></i>`);
+    }
+  }
+  mini.innerHTML = cells.join('');
+  document.getElementById('miniCap').textContent = 'Since ' + dshort(D.first);
+  document.getElementById('miniDays').textContent = D.total.days + ' days';
+
+  // next up
+  const nextWhen = document.getElementById('nextWhen');
+  const nextTitle = document.getElementById('nextTitle');
+  const nextSub = document.getElementById('nextSub');
+  const nextBtn = document.getElementById('nextBtn');
+  if (today) {
+    nextWhen.textContent = 'done';
+    nextTitle.textContent = fmt(today.h) + ' h today';
+    nextSub.textContent = 'Adding another row is allowed.';
+    nextBtn.textContent = 'Log another';
+    nextBtn.dataset.quickH = '0.5';
+  } else if (lastDay) {
+    const r = lastDay.rows.slice().sort((a, b) => b.h - a.h)[0];
+    nextWhen.textContent = 'from last time';
+    nextTitle.textContent = r.cat + (r.act ? ', ' + r.act : '');
+    nextSub.textContent = 'Thirty minutes is a real session.';
+    nextBtn.textContent = 'Log 30 minutes';
+    nextBtn.dataset.quickH = '0.5';
+  } else {
+    nextWhen.textContent = '';
+    nextTitle.textContent = 'First row';
+    nextSub.textContent = 'Pick a subject and go.';
+    nextBtn.textContent = 'Log a session';
+    nextBtn.dataset.quickH = '';
+  }
+
+  // pickup
+  const pick = document.getElementById('pickupBody');
+  if (lastDay) {
+    const r = lastDay.rows.slice().sort((a, b) => b.h - a.h)[0];
+    pick.innerHTML = `
+      <div class="big">${esc(r.cat)}${r.act ? ', ' + esc(r.act) : ''}</div>
+      <div class="meta">${dlong(lastDay.d)} — ${fmt(lastDay.h)} h, focus ${fmt(lastDay.focus)}</div>
+      ${r.n ? `<p class="note">${esc(r.n)}</p>` : ''}
+      <div class="actions">
+        <button class="btn primary small" data-repeat="${esc(r.cat)}|${esc(r.act)}|${r.h}">Log it again</button>
+        <button class="btn ghost small" data-view-link="log">See the last rows</button>
+      </div>`;
+  } else {
+    pick.innerHTML = '<p class="meta">Nothing logged yet. The first row is the hard one.</p>';
+  }
+
+  // week strip
+  const counted = D.week.filter(d => d.counted).length;
+  const maxH = Math.max(1, ...D.week.map(d => d.h));
+  document.getElementById('weekBody').innerHTML = `
+    <div class="days">${D.week.map(d => {
+      const pct = d.h ? Math.max(10, Math.round(d.h / maxH * 100)) : 0;
+      return `<div class="daycell${d.today ? ' today' : ''}" title="${dlong(d.d)}${d.h ? ', ' + fmt(d.h) + ' h' : ', no row'}">
+        <div class="bar"><i style="height:${pct}%"></i></div>
+        <b>${parse(d.d).toLocaleDateString('en-AU', { weekday: 'narrow' })}</b>
+        <em>${d.h ? fmt(d.h) : ''}</em>
+      </div>`;
+    }).join('')}</div>
+    <p class="goal"><b>${counted} of 7</b> days over 45 minutes.
+      ${D.total.days ? `Average session ${fmt(D.total.hPerSession)} h.` : ''}</p>`;
+}
+
+/* ── render: log ────────────────────────────────────────────────────── */
+function filtered() {
+  const q = S.q.trim().toLowerCase();
+  const toks = q.split(/\s+/).filter(Boolean);
+  return S.rows.filter(r => {
+    if (S.cat !== 'All' && r.cat !== S.cat) return false;
+    if (S.day && r.d !== S.day) return false;
+    if (!toks.length) return true;
+    const hay = (r.n + ' ' + r.cat + ' ' + r.act + ' ' + r.d).toLowerCase();
+    return toks.every(t => hay.includes(t));
+  }).slice().reverse();
+}
+
+function renderLog() {
+  const counts = new Map();
+  for (const r of S.rows) counts.set(r.cat, (counts.get(r.cat) || 0) + 1);
+  const chips = [['All', S.rows.length], ...Array.from(counts.entries()).sort((a, b) => b[1] - a[1])];
+  document.getElementById('catChips').innerHTML = chips.map(([c, n]) =>
+    `<button class="chip" data-cat="${esc(c)}" aria-pressed="${S.cat === c}">${esc(c)}<span class="n">${n}</span></button>`).join('');
+
+  const qEl = document.getElementById('q');
+  if (qEl.value !== S.q) qEl.value = S.q;
+
+  document.getElementById('dayFilterBox').innerHTML = S.day
+    ? `<div class="dayfilter">Showing ${dlong(S.day)} only <button type="button" id="clearDay">clear</button></div>` : '';
+
+  const rows = filtered();
+  const shown = rows.slice(0, S.limit);
+  document.getElementById('logCount').textContent =
+    rows.length ? `${rows.length} ${rows.length === 1 ? 'row' : 'rows'}${S.q ? ' matching' : ''}` : 'No rows match that.';
+
+  let html = '', month = '';
+  for (const r of shown) {
+    const m = monthName(r.d);
+    if (m !== month) {
+      const inMonth = rows.filter(x => monthName(x.d) === m);
+      html += `<div class="month">${m}<span>${inMonth.length} rows, ${fmt(sum(inMonth.map(x => x.h)))} h</span></div>`;
+      month = m;
+    }
+    const key = [r.d, r.cat, r.act, r.h, r.f].join('|');
+    const open = S.open.has(key);
+    html += `<article class="entry${open ? ' open' : ''}" data-key="${esc(key)}" tabindex="0" role="button" aria-expanded="${open}">
+      <div class="date">${dshort(r.d)}</div>
+      <div class="what">
+        <div class="top-line">
+          <span class="dot" style="${dot(r.cat)}" aria-hidden="true"></span>
+          <span class="cat">${esc(r.cat)}</span>
+          ${r.act ? `<span class="act">${esc(r.act)}</span>` : ''}
+        </div>
+        ${r.n ? `<p class="note">${esc(r.n)}</p>` : '<p class="note" style="color:var(--ink-3)">No note.</p>'}
+      </div>
+      <div class="right"><span class="h">${fmt(r.h)} h</span><span class="f">focus ${fmt(r.f)}</span></div>
+    </article>`;
+  }
+  document.getElementById('logList').innerHTML = html || '<p class="empty">Nothing here yet.</p>';
+  document.getElementById('moreBox').innerHTML = rows.length > shown.length
+    ? `<button class="btn ghost" id="moreBtn">Show ${Math.min(40, rows.length - shown.length)} more of ${rows.length}</button>` : '';
+}
+
+/* ── render: patterns ───────────────────────────────────────────────── */
+function level(h) {
+  if (!h) return 0;
+  if (h < 0.75) return 1;
+  if (h < 1.5) return 2;
+  if (h < 2.5) return 3;
+  return 4;
+}
+
+function renderPatterns() {
+  const D = S.D;
+  const t = parse(todayISO());
+  const thisMon = dayNum(t) - ((t.getDay() + 6) % 7);
+  const startMon = thisMon - 25 * 7;
+  const cells = [];
+  for (let w = 0; w < 26; w++) {
+    for (let dow = 0; dow < 7; dow++) {
+      const key = iso(fromDayNum(startMon + w * 7 + dow));
+      const e = D.byDay.get(key);
+      const inRange = key >= D.first && key <= todayISO();
+      const lv = e ? level(e.h) : 0;
+      cells.push(`<i data-d="${key}" class="${lv ? 'l' + lv : ''}${key === todayISO() ? ' today' : ''}${inRange ? '' : ' pad'}"
+        title="${dlong(key)}${e ? ', ' + fmt(e.h) + ' h' : inRange ? ', no row' : ''}"
+        aria-hidden="true"></i>`);
+    }
+  }
+  document.getElementById('heat').innerHTML = cells.join('');
+  document.getElementById('heat').setAttribute('aria-label', 'Days from ' + dlong(D.first) + ' to today, shaded by hours logged.');
+  document.getElementById('heatRange').textContent = dshort(D.first) + ' to today, ' + D.total.days + ' days';
+
+  const maxH = Math.max(...D.subjects.map(s => s.h), 1);
+  const totalH = D.total.hours || 1;
+  document.getElementById('subjTable').innerHTML = `
+    <thead><tr><th>Subject</th><th style="width:32%">Share of hours</th><th class="num">Hours</th><th class="num">Sessions</th><th class="num">Focus</th></tr></thead>
+    <tbody>${D.subjects.map(s => `
+      <tr>
+        <td><span class="subname"><i class="dot" style="${dot(s.cat)}"></i>${esc(s.cat)}</span>
+          <span class="submeta">last ${dshort(s.last)}, ${s.n} sessions</span></td>
+        <td><div class="share"><i style="width:${Math.round(s.h / maxH * 100)}%"></i></div>
+          <span class="submeta">${Math.round(s.h / totalH * 100)}% of all hours</span></td>
+        <td class="num">${fmt(s.h)}</td>
+        <td class="num">${s.n}</td>
+        <td class="num">${fmt(s.focus)}</td>
+      </tr>`).join('')}</tbody>`;
+
+  const maxW = Math.max(...D.weeks.map(w => w.h), 1);
+  document.getElementById('weekChart').innerHTML = D.weeks.map((w, i) => {
+    const mh = Math.round(w.maths / maxW * 100), oh = Math.round(w.other / maxW * 100);
+    const lbl = i % 3 === 2 || i === 11 ? dshort(w.mon) : '';
+    return `<div class="wk" title="Week of ${dshort(w.mon)}, ${fmt(w.h)} h">
+      <div class="stack">${w.maths ? `<i class="m" style="height:${mh}%"></i>` : ''}${w.other ? `<i class="o" style="height:${oh}%"></i>` : ''}</div>
+      ${lbl ? `<span class="lbl">${lbl}</span>` : ''}
+    </div>`;
+  }).join('');
+
+  document.getElementById('phrases').innerHTML = D.phrases.length
+    ? D.phrases.map(p => `<button class="phr" data-phrase="${esc(p.p)}">${esc(p.p)}<b>${p.n}</b></button>`).join('')
+    : '<p class="muted" style="font-size:14px;color:var(--ink-3)">Not enough notes yet. A phrase appears once the same idea shows up on three different days.</p>';
+}
+
+/* ── render all / routing ───────────────────────────────────────────── */
+function renderAll() {
+  S.D = derive(S.rows);
+  const boot = document.getElementById('boot');
+  if (boot) boot.remove();
+  renderToday(); renderLog(); renderPatterns();
+  setView(S.view, true);
+  paintTimer();
+}
+
+function setView(v, silent) {
+  if (!['today', 'log', 'patterns'].includes(v)) v = 'today';
+  S.view = v;
+  for (const sec of document.querySelectorAll('.view')) sec.hidden = sec.id !== 'view-' + v;
+  for (const b of document.querySelectorAll('[data-view]')) b.setAttribute('aria-current', String(b.dataset.view === v));
+  if (!silent) {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (v === 'log') setTimeout(() => document.getElementById('q')?.focus({ preventScroll: true }), 60);
+  }
+  if (location.hash.slice(1) !== v) history.replaceState(null, '', '#' + v);
+  announce(v.charAt(0).toUpperCase() + v.slice(1) + ' view');
+}
+
+/* ── log sheet ──────────────────────────────────────────────────────── */
+let sheetCat = 'Maths';
+
+function openSheet(preset) {
+  const dlg = document.getElementById('sheet');
+  sheetCat = (preset && preset.cat) ||
+    (S.D && S.D.last ? S.D.byDay.get(S.D.last).rows[0].cat : 'Maths');
+  document.getElementById('fDate').value = (preset && preset.d) || todayISO();
+  document.getElementById('fH').value = (preset && preset.h) || '';
+  document.getElementById('fAct').value = (preset && preset.act) || '';
+  document.getElementById('fN').value = '';
+  document.getElementById('fF').value = 7;
+  document.getElementById('fFout').textContent = '7';
+  document.getElementById('fStatus').textContent = '';
+  paintCatPick();
+  const acts = Array.from(new Set(S.rows.map(r => r.act).filter(Boolean))).sort();
+  document.getElementById('actList').innerHTML = acts.map(a => `<option value="${esc(a)}">`).join('');
+  dlg.showModal();
+  setTimeout(() => document.getElementById('fH').focus(), 60);
+}
+
+function paintCatPick() {
+  document.getElementById('catPick').innerHTML = SUBJECTS.map(c =>
+    `<button type="button" class="chip" data-cat-pick="${esc(c)}" aria-pressed="${c === sheetCat}">${esc(c)}</button>`).join('');
+}
+
+async function submitLog(e) {
+  e.preventDefault();
+  const form = document.getElementById('logForm');
+  if (document.getElementById('fTrap').value) return;
+  const body = {
+    d: document.getElementById('fDate').value,
+    cat: sheetCat,
+    act: document.getElementById('fAct').value.trim(),
+    h: parseFloat(document.getElementById('fH').value),
+    f: parseFloat(document.getElementById('fF').value),
+    n: document.getElementById('fN').value.trim()
+  };
+  const status = document.getElementById('fStatus'), save = document.getElementById('fSave');
+  if (!body.d) { status.textContent = 'Pick a date.'; return; }
+  if (!isFinite(body.h) || body.h <= 0) { status.textContent = 'Hours need a number.'; return; }
+  status.textContent = 'Saving…'; save.disabled = true;
+  try {
+    const res = await fetch(LOG_API, {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body)
+    });
+    const j = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(j.error || 'Save failed (' + res.status + ')');
+    document.getElementById('sheet').close();
+    form.reset();
+    S.pending.push({ row: body, t: Date.now() });
+    S.rows = cleanRows(S.rows.concat([body]));
+    saveCache(S.rows);
+    renderAll();
+    toast('Logged ' + fmt(body.h) + ' h of ' + body.cat.toLowerCase() + '.');
+    setView('today', true);
+    setTimeout(() => refresh(true), 1200);
+  } catch (err) {
+    status.textContent = err.message || 'Save failed';
+  } finally { save.disabled = false; }
+}
+
+/* ── timer ──────────────────────────────────────────────────────────── */
+function readTimer() { try { return JSON.parse(lsGet(TIMER_KEY) || 'null'); } catch (e) { return null; } }
+function paintTimer() {
+  const btn = document.getElementById('timerBtn');
+  if (!btn) return;
+  const tm = readTimer();
+  btn.hidden = false;
+  if (tm) {
+    const mins = Math.max(1, Math.round((Date.now() - tm.start) / 60000));
+    btn.textContent = 'Stop ' + (mins < 60 ? mins + ' min' : Math.floor(mins / 60) + 'h ' + (mins % 60) + 'm');
+    btn.classList.remove('ghost'); btn.classList.add('primary');
+    S.running = true;
+  } else {
+    btn.textContent = 'Start a timer';
+    btn.classList.add('ghost'); btn.classList.remove('primary');
+    S.running = false;
+  }
+}
+function toggleTimer() {
+  const tm = readTimer();
+  if (!tm) {
+    const last = S.D && S.D.last ? S.D.byDay.get(S.D.last).rows[0] : null;
+    lsSet(TIMER_KEY, JSON.stringify({ start: Date.now(), cat: last ? last.cat : 'Maths', act: last ? last.act : '' }));
+    paintTimer(); toast('Timer running. Stop it when you finish.');
+  } else {
+    const mins = (Date.now() - tm.start) / 60000;
+    const h = Math.max(0.05, Math.round((mins / 60) * 100) / 100);
+    lsSet(TIMER_KEY, 'null');
+    paintTimer();
+    openSheet({ cat: tm.cat, act: tm.act, h: String(h) });
+    toast('Stopped at ' + mins.toFixed(0) + ' min. Save the row.');
+  }
+}
+setInterval(() => { if (S.running) paintTimer(); }, 15000);
+
+/* ── theme ──────────────────────────────────────────────────────────── */
+function applyTheme(t) {
+  document.documentElement.dataset.theme = t;
+  lsSet('study-theme', t);
+}
+document.getElementById('themeBtn').addEventListener('click', () => {
+  applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+});
+
+/* ── events ─────────────────────────────────────────────────────────── */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-view],[data-log],[data-cat],[data-cat-pick],[data-repeat],[data-view-link],[data-phrase],[data-key],[data-h]');
+  if (!t) return;
+  if (t.dataset.view) { setView(t.dataset.view); return; }
+  if (t.hasAttribute('data-log')) { openSheet(); return; }
+  if (t.dataset.cat) { S.cat = t.dataset.cat; S.day = null; S.limit = 40; renderLog(); return; }
+  if (t.dataset.catPick) { sheetCat = t.dataset.catPick; paintCatPick(); return; }
+  if (t.dataset.repeat) {
+    const [cat, act, h] = t.dataset.repeat.split('|');
+    openSheet({ cat, act, h });
+    return;
+  }
+  if (t.dataset.viewLink) { setView(t.dataset.viewLink); return; }
+  if (t.dataset.phrase) { S.q = t.dataset.phrase; S.cat = 'All'; S.day = null; renderLog(); setView('log'); return; }
+  if (t.dataset.h) { document.getElementById('fH').value = t.dataset.h; document.getElementById('fH').focus(); return; }
+  if (t.dataset.key) {
+    if (S.open.has(t.dataset.key)) S.open.delete(t.dataset.key); else S.open.add(t.dataset.key);
+    renderLog();
+  }
+});
+
+document.addEventListener('keydown', e => {
+  const tag = (e.target.tagName || '').toUpperCase();
+  const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target.isContentEditable;
+  if (e.key === 'Escape' && document.getElementById('sheet').open) { document.getElementById('sheet').close(); return; }
+  if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === 'n' || e.key === 'N') { e.preventDefault(); openSheet(); }
+  else if (e.key === 't' || e.key === 'T') { e.preventDefault(); document.getElementById('themeBtn').click(); }
+  else if (e.key === '/') { e.preventDefault(); setView('log'); setTimeout(() => document.getElementById('q').focus(), 60); }
+  else if (e.key === '1') setView('today');
+  else if (e.key === '2') setView('log');
+  else if (e.key === '3') setView('patterns');
+});
+
+document.addEventListener('input', e => {
+  if (e.target.id === 'q') { S.q = e.target.value; S.limit = 40; renderLog(); }
+  if (e.target.id === 'fF') document.getElementById('fFout').textContent = e.target.value;
+});
+
+document.getElementById('logForm').addEventListener('submit', submitLog);
+document.getElementById('nextBtn').addEventListener('click', () => {
+  const h = document.getElementById('nextBtn').dataset.quickH;
+  if (!h) { openSheet(); return; }
+  const base = S.D.byDay.get(todayISO()) || S.D.byDay.get(S.D.last);
+  if (!base) { openSheet(); return; }
+  const r = base.rows.slice().sort((a, b) => b.h - a.h)[0];
+  openSheet({ cat: r.cat, act: r.act, h });
+});
+window.addEventListener('hashchange', () => {
+  const v = location.hash.slice(1);
+  if (['today', 'log', 'patterns'].includes(v)) setView(v);
+});
+document.getElementById('fCancel').addEventListener('click', () => document.getElementById('sheet').close());
+document.getElementById('timerBtn').addEventListener('click', toggleTimer);
+document.getElementById('refreshBtn').addEventListener('click', () => refresh(true));
+document.getElementById('logList').addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('entry')) {
+    e.preventDefault(); e.target.click();
+  }
+});
+document.getElementById('heat').addEventListener('click', e => {
+  const cell = e.target.closest('i[data-d]');
+  if (!cell || cell.classList.contains('pad')) return;
+  S.day = cell.dataset.d; S.cat = 'All'; S.q = ''; S.limit = 40;
+  renderLog(); setView('log');
+});
+
+/* ── boot ───────────────────────────────────────────────────────────── */
+(function boot() {
+  const hv = location.hash.slice(1);
+  if (['today', 'log', 'patterns'].includes(hv)) S.view = hv;
+  const cached = loadCache();
+  if (cached) {
+    S.rows = cleanRows(cached.rows);
+    S.readAt = cached.t;
+    renderAll();
+    setSource('Showing the last read, refreshing…', true);
+  }
+  refresh(!cached);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && Date.now() - S.readAt > 30000) refresh(false);
+  });
+})();
+</script>
+</body>
+</html>
